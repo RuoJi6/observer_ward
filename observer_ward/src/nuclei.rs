@@ -66,6 +66,9 @@ impl NucleiRunner {
   }
   fn command(&self, config: &ObserverWardConfig) -> Command {
     let mut command = Command::new("nuclei");
+    if let Some(nuclei_path) = &config.nuclei_path {
+      command.arg("--nuclei-path").arg(nuclei_path);
+    }
     command.args([
       "-no-color",
       "-timeout",
